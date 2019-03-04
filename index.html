@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Post Fetcher</title>
+    <!-- CSS STYLESHEETS-->
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <label for="link" class="input">Link</label><br />
+    <input type="text" id="link" class="input" placeholder="www.xyz.com" /><br />
+    <button id="link-submit" class="input">SUBMIT</button><br />
+    <br />
+    <div id="available-tags">Available Tags:</div><br /><br />
+    <div id="tag-collector">
+        <label for="search" class="input">Link</label><br />
+        <input type="text" id="search" class="input" placeholder="search tags" /><br />
+        <button id="tag-submit" class="input">SUBMIT</button>
+        <button id="sposts" class="input">SEARCH POSTS</button>
+        <button id="clear" class="input">CLEAR TAGS</button><br />
+    </div>
+    <div id="stags" class="tagcol"></div>
+    <ul id="list">
+
+    </ul>
+    <div id="posts">
+
+    </div>
+    <script src="fetch.js" async></script>
+</body>
+
+</html>

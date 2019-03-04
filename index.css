@@ -1,0 +1,54 @@
+html, body{
+    position: relative;
+    width:100%;
+    height:auto;
+    overflow-x:hidden;
+}
+#tag-collector{
+    position: relative;
+    display:none;
+}
+body{
+    background-color:rgb(240, 235, 235);
+}
+.tagcol{
+    position: relative;
+    margin:20px;
+}
+.tag{
+    position: relative;
+    margin:4px;
+    padding:5px;
+    font-size:0.7em;
+    border-radius:5px;
+    background-color: rgb(14, 13, 13);
+    color:white;
+}
+.showtag{
+    position: relative;
+    margin:4px;
+    padding:5px;
+    font-size:0.7em;
+    border-radius:5px;
+    background-color: white;
+    color:black;
+}
+.post-tab{
+    position: relative;
+    cursor:pointer;
+    margin:25px;
+}
+.posts{
+  position: relative;
+}
+
+.input{
+    position: relative;
+    margin:5px;
+}
+
+.post{
+    position: relative;
+    margin:5%;
+    text-align: justify;
+}
