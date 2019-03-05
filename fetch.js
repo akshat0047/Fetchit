@@ -1,7 +1,7 @@
-let obj, tags, stags = [], tagid = [];
+let obj, tags, link, stags = [], tagid = [];
 
 document.getElementById("link-submit").addEventListener("click", function () {
-    let link = document.getElementById("link").value;
+    link = document.getElementById("link").value;
     if (link.length != 0)
         document.getElementById("tag-collector").style.display = "block";
 
@@ -13,21 +13,12 @@ document.getElementById("link-submit").addEventListener("click", function () {
         console.log(this.status);
         if (this.status >= 200 && this.status < 400) {
             tags = JSON.parse(this.responseText);
+            console.log(tags);
             idalloc();
         }
     };
-
-    var xmlhttp1 = new XMLHttpRequest();
-    xmlhttp1.open("GET", "https://" + link + "/wp-json/wp/v2/posts", true);
-    xmlhttp1.send();
-    xmlhttp1.onload = function () {
-        console.log(this.status);
-        if (this.status >= 200 && this.status < 400) {
-            obj = JSON.parse(this.responseText);
-        }
-    };
-
 });
+
 //Grouping tags with their id's in a nested array
 
 function idalloc() {
@@ -69,27 +60,38 @@ document.getElementById("sposts").addEventListener("click", function () {
     createheads(arr);
 });
 
+
 // Showing posts with searched tags
 function createheads(search) {
     document.getElementById("list").innerHTML = "";
     let tab = [];
-    for (let i = 0; i < obj.length; i++) {
-        for (let j = 0; j < obj[i].tags.length; j++) {
-            for (let k = 0; k < search.length; k++) {
-                if (obj[i].tags[j] === search[k]) {
-                    tab.push("<li style='pointer:cursor' onclick= 'createposts(" + i + ")' id='tab' class='post-tab'>" + obj[i].title.rendered + "</li>");
-                }
+    for (let k = 0; k < search.length; k++) {
+        var xmlhttp1 = new XMLHttpRequest();
+        xmlhttp1.open("GET", "https://" + link + "/wp-json/wp/v2/posts?tags=" + search[k], true);
+        xmlhttp1.send();
+        xmlhttp1.onload = function () {
+            console.log(this.status);
+            if (this.status >= 200 && this.status < 400) {
+                obj = JSON.parse(this.responseText);
+                console.log(obj);
+                showheads(obj);
             }
-        }
+        };
     }
 
-
-    for (i = 0; i < tab.length; i++)
-        document.getElementById("list").innerHTML += tab[i];
+}
+function showheads(obj) {
+    console.log("inside function");
+    for (let i = 0; i < obj.lenght; i++) {
+        console.log("im in");
+        document.getElementById("list").innerHTML = "<li onclick= 'showpost(" + i + ")' id='tab' class='post-tab'>" + obj[i].title.rendered + "</li>";
+        let post = "<div id=" + i + "class='post'><h2 class='posthead'>" + obj[id].title.rendered + "</h2><p class='postcontent'>" + obj[id].content.rendered + "<p></div>";
+        document.getElementById("posts").innerHTML = post;
+    }
+    console.log("end function");
 }
 
-function createposts(id) {
-    let post = "<div class='post'><h2 class='posthead'>" + obj[id].title.rendered + "</h2><p class='postcontent'>" + obj[id].content.rendered + "<p></div>";
-    document.getElementById("posts").innerHTML = post;
+function showpost(id) {
+    document.getElementById(id).style.display = "block";
 }
 
