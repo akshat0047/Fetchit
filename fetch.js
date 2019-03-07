@@ -57,6 +57,7 @@ document.getElementById("sposts").addEventListener("click", function () {
                 arr.push(tagid[j][1]);
         }
     }
+    console.log(stags)
     createheads(arr);
 });
 
@@ -82,16 +83,15 @@ function createheads(search) {
 }
 function showheads(obj) {
     console.log("inside function");
-    for (let i = 0; i < obj.lenght; i++) {
+    for (let i = 0; i < obj.length; i++) {
         console.log("im in");
-        document.getElementById("list").innerHTML = "<li onclick= 'showpost(" + i + ")' id='tab' class='post-tab'>" + obj[i].title.rendered + "</li>";
-        let post = "<div id=" + i + "class='post'><h2 class='posthead'>" + obj[id].title.rendered + "</h2><p class='postcontent'>" + obj[id].content.rendered + "<p></div>";
-        document.getElementById("posts").innerHTML = post;
+        document.getElementById("list").innerHTML += "<li onclick= 'showpost(" + i + ")' id='tab' class='post-tab'>" + obj[i].title.rendered + "</li>";
     }
     console.log("end function");
 }
 
-function showpost(id) {
-    document.getElementById(id).style.display = "block";
+function showpost(i) {
+    let post = "<div id=" + i + "class='post'><h2 class='posthead'>" + obj[i].title.rendered + "</h2><p class='postcontent'>" + obj[i].content.rendered + "<p></div>";
+    document.getElementById("posts").innerHTML = post;
 }
 
